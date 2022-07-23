@@ -35,12 +35,21 @@ export default function Main(){
         )
     }
 
-    function clear(){
-        setMeme(prevMeme => ({
+    // Clear default value on click
+    function clearTopText(){
+        setMeme(prevMeme => ({ 
             ...prevMeme,
-            topText: "",
+            topText: ""
+            })
+    )
+    }
+    
+    function clearBottomText(){
+        setMeme(prevMeme => ({ 
+            ...prevMeme,
             bottomText: ""
-        }))
+            })
+    )
     }
     
     return (
@@ -52,14 +61,14 @@ export default function Main(){
                 name="topText"
                 value={meme.topText}
                 onChange={handleChange}
-                onClick={clear}
+                onClick={clearTopText}
                 />
                 <input 
                 type="text" 
                 placeholder="Bottom Text"
                 name="bottomText"
                 value={meme.bottomText}
-                onClick={clear}
+                onClick={clearBottomText}
                 onChange={handleChange}
                 />
                 <div className="divButton">

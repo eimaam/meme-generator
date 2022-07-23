@@ -1,14 +1,31 @@
-import { getValue } from "@testing-library/user-event/dist/utils";
 import React, { useState, useEffect } from "react";
 // import image from "../Assets/delivery.jpg"
+// import data from "./memesData";
 
-export default function Main(props){
+export default function Main(){
     const [meme, setMeme] = useState({
-        topText: "",
-        bottomText: "",
-        image: "http://i.imgflip.com/1bij.jpg"
+        topText: "Top Text goes here",
+        bottomText: "Bottom text goes here",
+        image: "https://i.imgflip.com/30b1gx.jpg"
     })
+
+    const [memesList, setMemesList] = useState([])
+    useEffect(() => {
+        fetch("https://api.imgflip.com/get_memes")
+            .then(res => res.json())
+            .then(data => setMemesList(data.data.memes))
+    }, [])
     
+    function getNextMeme(){
+        const random = Math.floor(Math.random() * memesList.length)
+        const url = memesList[random].url;
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            image: url
+        }))
+        console.log(url)
+    }
+
     function handleChange(event){
         const {name, value} = event.target
         setMeme(prevMeme => ({
@@ -18,53 +35,49 @@ export default function Main(props){
         )
     }
 
-    const [memesList, setMemesList] = useState([])
-    
-    React.useEffect(() => {
-        fetch("https://api.imgflip.com/get_memes")
-            .then(res => res.json())
-                .then(data => setMemesList(data.data.memes))
-                    .catch(error => {
-                        console.log(error)
-                    })
-    }, [])
-    
-    function getNextMeme(){
-        const random = Math.floor(Math.random() * memesList.length)
-        const url = memesList[random].url;
-        setMeme(prevMemeList => ({
-            ...prevMemeList,
-            image: url
+    function clear(){
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            topText: "",
+            bottomText: ""
         }))
     }
     
     return (
         <div className="main">
-            <form>
+            <div id="control">
                 <input 
                 type="text" 
                 placeholder="Top Text"
                 name="topText"
                 value={meme.topText}
                 onChange={handleChange}
+                onClick={clear}
                 />
                 <input 
                 type="text" 
                 placeholder="Bottom Text"
                 name="bottomText"
                 value={meme.bottomText}
+                onClick={clear}
                 onChange={handleChange}
                 />
-                <br />
                 <div className="divButton">
-                    <button onClick={getNextMeme}>{props.label}</button>
+                    <button onClick={getNextMeme}>
+                        Generate Meme
+                    </button>
+                    <br />
+                    <a href={meme.image} download="meme"><button>Download Meme</button></a>
                 </div>
-            </form>
-            <h2 className="topText">{meme.topText}</h2>
-            <h2 className="bottomText">{meme.bottomText}</h2>
-            <div className="memeImage">
-                <img src={meme.image} alt="test"/>
+            </div>
+            <div className="meme">
+                <h2 className="topText Text" >{meme.topText}</h2>
+                <h2 className="bottomText Text">{meme.bottomText}</h2>
+                <div className="memeImage">
+                    <img src={meme.image} alt="meme" />
+                </div>
             </div>
         </div>
     )
 }
+

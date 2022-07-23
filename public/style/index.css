@@ -14,11 +14,6 @@
     --space-grotesk: 'Space Grotesk', sans-serif;
     --gap: 1rem;
 }
-.lightMode{
-    --default: #212121;
-    --dark: #fff;
-    transition: 900ms ease-in;
-}
 div,
 button,
 h1,h2,h3,h4,h5,h6,
@@ -36,10 +31,10 @@ img{
 input, 
 select,  
 textarea{
-    margin: 1rem auto;
-    width: 100%;
+    width: 80%;
+    margin: 0.5rem auto;
     font-family: var(--space-grotesk);
-    padding: 1rem;
+    padding: 1.5rem;
     border: none;
     border-radius: 0.5rem;
     /* background-color: var(--primary); */
@@ -48,27 +43,19 @@ textarea{
     resize: none;
 }
 button{
-    margin: 1rem auto;
+    width: 50%;
+    margin: 0.5rem auto;
     font-family: var(--space-grotesk);
     padding: 1rem;
-    border: none;
     text-transform: uppercase;
-    box-shadow: -5px 5px var(--default);
     font-size: 1rem;
+    font-weight: bold;
 }
 .divButton{
-    margin: auto;
+    width: 50%;
     text-align: center;
 }
-.messageBtn:hover p{
-    visibility: hidden;
-    place-items: center;
-}
-.messageBtn:hover i{
-    animation-name: messageButton;
-    animation-duration: 1s;
-    animation-timing-function:ease-in-out;
-}
+
 a{
     color: var(--default);
     text-decoration: none;
@@ -87,9 +74,9 @@ body{
     color: var(--default);
     background-color: var(--dark);
     line-height: 2;
-    transition: 700ms ease-in;
     overflow-x: hidden;
     word-wrap: break-word;
+    
 }
 header{
     z-index: 999;
@@ -98,7 +85,7 @@ header{
 nav{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: right;
     padding-inline: 2rem;
 }
 nav ul{
@@ -108,115 +95,92 @@ nav ul{
     list-style-type: none;
     
 }
-.flex{
-    display: flex;
-    gap: var(--gap, 1rem);
-    justify-content: center;
-    padding: 1.5rem;
-}
-.flex > div{
-    width: 50%;
-    text-align: justify;
-}
-.flexCol{
-    display: flex;
-    flex-direction: column;
-    padding: 1.5rem;
-    gap: var(--gap, 1rem);
-}
-.gridCol{
-    display: grid;
-    grid-auto-flow: column;
-    padding: 1.5rem;
-    gap: 1rem;
-}
-.grid{
-    display: grid;
-    grid-auto-flow: row;
-    padding: 1.5rem;
-    gap: 1rem;
-}
-.toUcase{
-    text-transform: uppercase;
-}
-.center{
-    margin: auto;
-    text-align: center;
-}
-h1{
-    color: var(--primary);
-    text-transform: uppercase;
-    font-size: 6rem;
-    font-family: 'Rowdies' cursive;
-    text-shadow: 1px 1px 0px var(--default);
-    letter-spacing: 8px;
-}
-h2{
-    font-size: 2rem;
-    font-family: 'Titillium Web';
-    line-height: 2;
-    text-transform: capitalize;
-}
-h3{
-    text-align: justify;
 
-}
-h4{
-    font-size: 1.4rem;
-    font-family: var(--space-grotesk);
-}
-
-
-/* Footer */
-footer{
-    padding: 3rem 0;
-    margin-bottom: 7rem;
-    text-transform: uppercase;
-}
-footer > div{
-    margin: auto;
-    width: 70%;
-    display: flex;
-    justify-content: space-around;
-    gap: 1.5rem;
-}
-footer ul::first-line{
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: 'Ubuntu', sans-serif;
-}
-footer li{
-    font-family: 'Ubuntu', sans-serif;
-}
-footer ul i{
-    padding-right: 1rem;
-}
 
 /* Main Contents */
-#root{
-    
-}
 .main{
-    margin: auto;
-    width: 60%;
+    margin: 1rem auto;
+    padding: 1rem;
+    width: 90%;
     height: 90vh;
-    background-color: var(--secondary);
-    padding: 5rem;
+    background-color: var(--border);
+    display: flex;
+    flex-direction: column;
 }
-
-.memeImage > *{
-    margin: auto;
-    width: 80%;
+#control{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-img{
+.main > div{
+    flex: 1;
+}
+.meme{
     position: relative;
-
+}
+.Text{
+    position: absolute;
+    width: 80%;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 15px 0;
+    padding: 0 5px;
+    font-family: impact, sans-serif;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: white;
+    letter-spacing: 1px;
+    text-shadow:
+        5px 2px 5px #000;
 }
 .topText{
-    position: absolute;
     top: 0;
 }
-.topText{
-    position: absolute;
+.bottomText{
     bottom: 0;
+}
+.memeImage{
+    height: 500px;
+}
+img {
+    margin: auto;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+footer{
+    text-align: center;
+}
+
+@media only screen and (max-width: 800px){
+    .main{
+        width: 95%;
+    }
+    input{
+        padding: 1rem;
+        border-radius: 0.3rem;
+        width: 100%;
+    }
+    .divButton{
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    button{
+        width: 70%;
+        padding: 0.5rem
+    }
+    .Text{
+        width: 90%;
+        font-size: 1.4rem;
+        text-shadow:
+            1px 5px 1px #000;
+    }
+    .memeImage{
+        height: 400px;
+    }
 }

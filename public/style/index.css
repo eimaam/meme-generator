@@ -3,9 +3,9 @@
 *::before{
     box-sizing: border-box;
     --primary: #ff4532;
-    --secondary: #d3d1d1;
+    --secondary: #897575;
     --default: #fff;
-    --border: #b6b3b3;
+    --border: #70716e;
     --dark: #212121;
     margin: 0;
     padding: 0;
@@ -31,10 +31,10 @@ img{
 input, 
 select,  
 textarea{
-    width: 80%;
+    width: 50%;
     margin: 0.5rem auto;
     font-family: var(--space-grotesk);
-    padding: 1.5rem;
+    padding: 1rem;
     border: none;
     border-radius: 0.5rem;
     /* background-color: var(--primary); */
@@ -45,11 +45,16 @@ textarea{
 button{
     width: 50%;
     margin: 0.5rem auto;
-    font-family: var(--space-grotesk);
-    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
     text-transform: uppercase;
     font-size: 1rem;
     font-weight: bold;
+    cursor: pointer;
+}
+button:hover{
+    background-color: var(--primary);
 }
 .divButton{
     width: 50%;
@@ -72,11 +77,19 @@ body{
     font-family: var(--space-grotesk);
     width: 100%;
     color: var(--default);
-    background-color: var(--dark);
-    line-height: 2;
+    background-color: var(--white);
     overflow-x: hidden;
     word-wrap: break-word;
+    /* align-items: center; */
+
     
+}
+#root{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, rgb(212, 213, 197), rgb(161, 187, 250))
 }
 header{
     z-index: 999;
@@ -99,13 +112,16 @@ nav ul{
 
 /* Main Contents */
 .main{
-    margin: 1rem auto;
+    margin: auto;
     padding: 1rem;
-    width: 90%;
-    height: 90vh;
+    width: 50%;
     background-color: var(--border);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 1rem;
 }
 #control{
     width: 100%;
@@ -113,12 +129,19 @@ nav ul{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    outline: auto;
+    border-radius: 1rem;
+    padding: 1rem;
 }
 .main > div{
     flex: 1;
 }
 .meme{
     position: relative;
+    width: 100%;
+    padding: 1rem;
+    outline: auto;
+    border-radius: 1rem;
 }
 .Text{
     position: absolute;
@@ -143,7 +166,7 @@ nav ul{
     bottom: 0;
 }
 .memeImage{
-    height: 500px;
+    height: 450px;
 }
 img {
     margin: auto;
@@ -151,18 +174,31 @@ img {
     height: 100%;
     object-fit: cover;
     display: block;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 2px #000;
 }
 footer{
+    width: 100%;
+    padding: 0.5rem;
+    position: fixed;
+    bottom: 0;
     text-align: center;
+    background-color: var(--border);
 }
 
 @media only screen and (max-width: 800px){
     .main{
         width: 95%;
     }
+    #control{
+        padding: 0.5rem;
+    }
+    #control, .meme{
+        outline: 1px solid var(--default);
+    }
     input{
-        font-size: 16px;
-        padding: 1rem;
+        font-size: 16px !important;
+        padding: 0.5rem;
         border-radius: 0.3rem;
         width: 100%;
     }
@@ -182,6 +218,9 @@ footer{
             1px 5px 1px #000;
     }
     .memeImage{
-        height: 400px;
+        height: 300px;
+    }
+    img{
+        border-radius: 0.5rem;
     }
 }

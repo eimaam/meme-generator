@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import image from "../Assets/delivery.jpg"
-// import data from "./memesData";
 
 export default function Main(){
     const [meme, setMeme] = useState({
@@ -23,7 +21,6 @@ export default function Main(){
             ...prevMeme,
             image: url
         }))
-        console.log(url)
     }
 
     function handleChange(event){
@@ -35,7 +32,7 @@ export default function Main(){
         )
     }
 
-    // Clear default value on click
+    // Clear default values on click of input 
     function clearTopText(){
         setMeme(prevMeme => ({ 
             ...prevMeme,
@@ -54,6 +51,7 @@ export default function Main(){
     
     return (
         <div className="main">
+            <h1>MEME GENERATOR</h1>
             <div id="control">
                 <input 
                 type="text" 
@@ -73,7 +71,7 @@ export default function Main(){
                 />
                 <div className="divButton">
                     <button onClick={getNextMeme}>
-                        Generate Meme
+                        Generate New Meme
                     </button>
                     <br />
                     <a href={meme.image} download="meme"><button>Download Meme</button></a>
